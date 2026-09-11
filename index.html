@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localhost Animation Trick</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            overflow: hidden;
+        }
+
+        #message {
+            font-size: 24px;
+            color: #ff4d4d;
+            font-weight: bold;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #btn-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .action-btn {
+            position: absolute;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="message">Sorry! You can't catch me!</div>
+    
+    <div id="btn-container">
+        <button class="action-btn" id="trick-btn">OK</button>
+    </div>
+
+    <script>
+        const btn = document.getElementById('trick-btn');
+        const message = document.getElementById('message');
+        let onLeftSide = true;
+
+        function moveButton() {
+            // Display the "Sorry" message
+            message.style.opacity = '1';
+
+            // Animate to the other side
+            if (onLeftSide) {
+                btn.style.transform = 'translateX(200px)';
+            } else {
+                btn.style.transform = 'translateX(-200px)';
+            }
+            
+            // Toggle the side state
+            onLeftSide = !onLeftSide;
+        }
+
+        // Triggers when they try to hover over it
+        btn.addEventListener('mouseenter', moveButton);
+
+        // Triggers if they manage to click it
+        btn.addEventListener('click', moveButton);
+    </script>
+
+</body>
+</html>
